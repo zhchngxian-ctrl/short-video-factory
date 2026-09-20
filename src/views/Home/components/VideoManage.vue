@@ -229,7 +229,7 @@ const getVideoSegments = async (options: { duration: number }) => {
       continue
     }
 
-    // 直接从当前随机索引选取素材，避免每轮都做 O(n) 的 findIndex 扫描和克隆
+    // 直接随机选取并移除素材，避免按路径再次扫描数组
     const randomAssetIndex = random.int(0, tempVideoAssets.length - 1)
     const [randomAsset] = tempVideoAssets.splice(randomAssetIndex, 1)
     if (!randomAsset) {
